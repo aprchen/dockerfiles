@@ -23,10 +23,7 @@ RUN apt-get update \
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
     && composer self-update --clean-backups
-#安装redis和mongodb扩展
-RUN pecl install mongodb \
-    && pecl install redis-$PHPREDIS_VERSION \
-    && docker-php-ext-enable mongodb redis
+
 #安装phalcon
 RUN wget https://codeload.github.com/phalcon/cphalcon/tar.gz/v${PHALCON_VERSION} -O /tmp/phalcon.tar.gz \
     && mkdir -p /tmp/phalcon \
@@ -36,5 +33,11 @@ RUN wget https://codeload.github.com/phalcon/cphalcon/tar.gz/v${PHALCON_VERSION}
     && ./install \
     && rm -r /tmp/phalcon \
     && docker-php-ext-enable phalcon
+
+#安装redis和mongodb扩展
+RUN pecl install mongodb \
+    && pecl install redis-$PHPREDIS_VERSION \
+    && docker-php-ext-enable mongodb redis
+
 
 CMD ["php-fpm"]

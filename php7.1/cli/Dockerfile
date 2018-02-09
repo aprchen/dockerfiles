@@ -53,7 +53,7 @@ RUN pecl install inotify \
 RUN pecl install mongodb \
     && docker-php-ext-enable mongodb
 
-EXPOSE 80 443;
+EXPOSE 80;
 
 WORKDIR /var/www/html
 
