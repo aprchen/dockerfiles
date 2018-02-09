@@ -1,6 +1,6 @@
 FROM php:7.1-fpm
 
-MAINTAINER sl <ott321@yeah.net> \
+MAINTAINER sl <ott321@yeah.net>
 
 ENV PHPREDIS_VERSION=3.1.6
 ENV PHALCON_VERSION=3.2.4
@@ -34,7 +34,8 @@ RUN wget https://codeload.github.com/phalcon/cphalcon/tar.gz/v${PHALCON_VERSION}
 
 
 RUN pecl install mongodb \
-    && pecl install redis-$PHPREDIS_VERSION \
-    && docker-php-ext-enable mongodb redis
+    && pecl install pdo_mysql \
+    && pecl install redis-${PHPREDIS_VERSION} \
+    && docker-php-ext-enable mongodb redis pdo_mysql
 
 CMD ["php-fpm"]
