@@ -2,8 +2,6 @@ FROM php:7.1-fpm
 
 MAINTAINER sl <ott321@yeah.net> \
 #版本
-ENV PHPREDIS_VERSION=3.1.6
-ENV MONGODB_VERSION=1.3.4
 ENV PHALCON_VERSION=3.2.4
 #设置时区
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
@@ -36,8 +34,7 @@ RUN wget https://codeload.github.com/phalcon/cphalcon/tar.gz/v${PHALCON_VERSION}
 
 #安装redis和mongodb扩展
 RUN pecl install mongodb \
-    && pecl install redis-$PHPREDIS_VERSION \
+    && pecl install redis \
     && docker-php-ext-enable mongodb redis
-
 
 CMD ["php-fpm"]
