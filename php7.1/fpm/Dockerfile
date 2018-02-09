@@ -32,9 +32,8 @@ RUN wget https://codeload.github.com/phalcon/cphalcon/tar.gz/v${PHALCON_VERSION}
     && rm -r /tmp/phalcon \
     && docker-php-ext-enable phalcon
 
-
 RUN pecl install mongodb \
-    && pecl install pdo_mysql \
+    && docker-php-ext-install pdo pdo_mysql \
     && pecl install redis-${PHPREDIS_VERSION} \
     && docker-php-ext-enable mongodb redis pdo_mysql
 
