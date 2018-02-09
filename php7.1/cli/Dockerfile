@@ -2,8 +2,8 @@ FROM php:7.1-cli
 
 MAINTAINER sl <ott321@yeah.net>
 
-ENV SWOOLE_VERSION = 2.1.0
-ENV HIREDIS_VERSION = 0.13.3
+ENV SWOOLE_VERSION=2.1.0
+ENV HIREDIS_VERSION=0.13.3
 
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' > /etc/timezone
