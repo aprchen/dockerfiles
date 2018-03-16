@@ -16,15 +16,9 @@ RUN apt-get update && apt-get install -y \
         curl \
         wget \
         git \
-        vim \
-        zip \
         libz-dev \
         libssl-dev \
     && apt-get clean
-
-RUN curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer \
-    && composer self-update --clean-backups
 
 RUN wget https://github.com/redis/hiredis/archive/v${HIREDIS_VERSION}.tar.gz -O hiredis.tar.gz \
     && mkdir -p hiredis \
@@ -50,17 +44,13 @@ RUN wget https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz 
     ) \
     && rm -r swoole \
     && docker-php-ext-enable swoole
-#RUN pecl install inotify \
-#    && docker-php-ext-enable inotify
+RUN pecl install inotify \
+    && docker-php-ext-enable inotify
 
 RUN pecl install mongodb \
     && docker-php-ext-enable mongodb
 
 
 WORKDIR /var/www/html
-
-#RUN composer install --no-dev \
-#    && composer dump-autoload -o \
-#    && composer clearcache
 
 CMD ["php", "-a"]

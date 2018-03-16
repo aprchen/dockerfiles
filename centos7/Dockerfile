@@ -10,12 +10,6 @@ RUN
 RUN set -x \
     # Fix root terminal
     && echo "export TERM=xterm" >> /root/.bashrc \
-    # 设置 阿里云的yum源
-    && mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup \
-    && curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo \
-    # 添加EPEL源
-    #&& wget -P /etc/yum.repos.d/ http://mirrors.aliyun.com/repo/epel-7.repo \
-    # 升级系统
     && yum upgrade \
          # 安装 wget
     && rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 \
