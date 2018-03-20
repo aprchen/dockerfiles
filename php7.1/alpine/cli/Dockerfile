@@ -24,6 +24,7 @@ RUN set -xe \
     &&  cd hiredis \
     && make -j \
     && make install \
+    && ldconfig \
     && cd .. \
     && wget https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz -O swoole.tar.gz \
     && mkdir -p swoole \
