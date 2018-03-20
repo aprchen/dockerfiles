@@ -14,6 +14,7 @@ RUN set -xe \
     re2c \
     make \
     && apk add --no-cache tzdata  \
+    openssl-devel \
     linux-headers \
     && echo "${TIME_ZONE}" > /etc/timezone \
     && ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime \
